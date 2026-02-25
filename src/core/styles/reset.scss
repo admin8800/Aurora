@@ -1,0 +1,30 @@
+a {
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+body {
+  font-family: open sans, Helvetica, Arial, sans-serif;
+  color: #000;
+}
+
+html.windows {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    overflow: auto;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #e6e6e6;
+    min-height: 25px;
+    min-width: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 99px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f7f7f7;
+    border: 1px solid #efefef;
+  }
+}
