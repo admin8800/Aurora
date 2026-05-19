@@ -148,7 +148,6 @@ import { getSubscribes } from '../apis/subscribe'
 import { ComboEnum } from '../enums/buysubs'
 import openApp from '../utils/open-app'
 import dayjs from 'dayjs'
-import bytes from 'bytes'
 import copy from 'copy-to-clipboard'
 import qrcode from 'qrcode'
 import '../styles/imp-btn.scss'
@@ -281,21 +280,6 @@ export default {
     this.$nextTick(() => {
       const { expiredDate, expiredResidue, leftFlow, planId, comboType } = this
       this.$emit('change', { expiredDate, expiredResidue, leftFlow, planId, comboType })
-
-      if (window.$crisp) {
-        window.$crisp.push([
-          'set',
-          'session:data',
-          [
-            [
-              ['Plan', res.data.plan?.name || '-'],
-              ['ExpireTime', this.expiredDate > 0 ? dayjs.unix(this.expiredDate).format('YYYY-MM-DD') : '-'],
-              ['UsedTraffic', bytes(this.usedFlow)],
-              ['AllTraffic', bytes(this.allFlow)]
-            ]
-          ]
-        ])
-      }
     })
 
     window.onerror = (e) => {

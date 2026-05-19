@@ -47,10 +47,6 @@ const actions = {
   async getUserInfo({ commit }) {
     window.conso1e.log(201)
     const res = await getUserInfo()
-    if (window.$crisp) {
-      window.$crisp.push(['set', 'user:email', [res.data.email]])
-      window.$crisp.push(['set', 'session:data', [[['Balance', res.data.balance / 100]]]])
-    }
     commit('SET_USER_INFO', res.data)
   }
 }

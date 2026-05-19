@@ -64,15 +64,7 @@ function getEnvConfig() {
 function getCustomHtml() {
   return isProd()
     ? `{!! $theme_config['custom_html'] !!}`
-    : `
-  
-<script>
-CRISP_RUNTIME_CONFIG = {
-  locale : getLocaleLang()
-};
-window.$crisp=[];window.CRISP_WEBSITE_ID="1b365c58-977c-45e9-830a-4570d306b697";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
-</script>
-  `
+    : ''
 }
 
 function getFavicon(VUE_APP_PUBLIC_PATH) {
@@ -140,7 +132,7 @@ function getCustomLoading() {
     @endempty
     <div class="loading-user">{!! $theme_config['loading_text'] !!}</div>
   `
-    : `<div class="loading-user">欢迎！主题购买请联系 <a href="https://t.me/kunpehx">@kunpehx</a></div>`
+    : `<div class="loading-user">Loading...</div>`
 }
 
 process.env.VUE_APP_PUBLIC_PATH = isProd() ? '/theme/{{$theme}}' : '/dev'
@@ -149,7 +141,7 @@ process.env.VUE_APP_ENV = getEnvConfig()
 process.env.VUE_APP_HTML = getCustomHtml()
 process.env.VUE_APP_JS = getCustomJS(process.env.VUE_APP_PUBLIC_PATH, process.env.VUE_APP_TIME)
 process.env.VUE_APP_CSS = getCustomCSS(process.env.VUE_APP_PUBLIC_PATH, process.env.VUE_APP_TIME)
-process.env.VUE_APP_TITLE = isProd() ? '{{$title}}' : 'NetGoing'
+process.env.VUE_APP_TITLE = isProd() ? '{{$title}}' : 'Aurora'
 process.env.VUE_APP_LOADING = getCustomLoading()
 process.env.VUE_APP_FAVICON = getFavicon(process.env.VUE_APP_PUBLIC_PATH)
 

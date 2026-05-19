@@ -1,7 +1,7 @@
 {
-  "name": "theme-netgo",
+  "name": "aurora-theme",
   "version": "1.6.22",
-  "description": "netgo主题",
+  "description": "Aurora theme",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",

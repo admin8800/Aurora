@@ -310,11 +310,8 @@ export default {
   }
   .menu-groups {
     height: calc(100vh - 172px);
-    overflow: hidden;
-
-    &:hover {
-      overflow: auto;
-    }
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .menu-group {
     padding: 0 30px;
