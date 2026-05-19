@@ -2,6 +2,7 @@
 const path = require('path')
 const dayjs = require('dayjs')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
+const themeConfig = require('./public/config.json')
 
 function isProd() {
   return process.env.NODE_ENV === 'production'
@@ -47,7 +48,7 @@ function getEnvConfig() {
           appName: 'Aurora',
           appDesc: \`稳定、高速、私密的IPLC专线加速器,\n优质的服务获得众多外贸公司、科研人员、科技博主一致好坪\`,
           appLogo: '',
-          appVersion: 'v1.5.6.1673150015337',
+          appVersion: 'v${themeConfig.version}',
           clientIOS: 'http://xxx.com/download.php?type=ios',
           clientAndroid: 'http://xxx.com/download.php?type=android',
           clientWindows: 'http://xxx.com/download.php?type=windows',

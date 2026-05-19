@@ -1,11 +1,12 @@
 {
   "name": "aurora-theme",
-  "version": "1.6.22",
+  "version": "1.6.25",
   "description": "Aurora theme",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build & node converter.js"
+    "clean": "node clean.js",
+    "build": "npm run clean && cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build && node converter.js"
   },
   "dependencies": {
     "@emailjs/browser": "3.11.0",

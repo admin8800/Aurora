@@ -1,39 +1,25 @@
 const JsConfuser = require('js-confuser')
 const fs = require('fs-extra')
-const walkjs = require('@nodelib/fs.walk')
 const path = require('path')
 const zipafolder = require('zip-a-folder')
 
-function walk() {
-  walkjs.walk('./dist/static/js', async (err, entries) => {
-    if (err) {
-      console.log(err)
-      return
-    }
+const themeConfigPath = './public/config.json'
+const distConfigPath = './dist/config.json'
+const distJsDir = './dist/static/js'
+const tempZipDir = './tempzip'
 
-    for (let i = 0; i < entries.length; i++) {
-      const item = entries[i]
+function walkFiles(dir) {
+  if (!fs.existsSync(dir)) return []
 
-      if (item.dirent.isFile()) {
-        const url = item.path
-        const filename = path.basename(url)
-        // console.log(url)
-        if (filename.startsWith('app.')) {
-          const content = fs.readFileSync(url).toString()
-          const newContent = await convert(content)
-          fs.writeFileSync(url, newContent)
-          console.log(url + '编译结束')
-        }
-      }
-    }
-
-    console.log('编译成功！')
-    zipfiles()
+  return fs.readdirSync(dir).flatMap((name) => {
+    const filePath = path.join(dir, name)
+    const stat = fs.statSync(filePath)
+    return stat.isDirectory() ? walkFiles(filePath) : [filePath]
   })
 }
 
 async function convert(str) {
-  const res = await JsConfuser.obfuscate(str, {
+  return JsConfuser.obfuscate(str, {
     target: 'browser',
     preset: 'medium',
     renameGlobals: false,
@@ -42,36 +28,65 @@ async function convert(str) {
       antiDebug: false
     }
   })
-  return res
 }
 
-function plusVersion(version) {
-  const s = version.split('.')
-  return `${s[0]}.${s[1]}.${Number(s[2]) + 1}`
-}
-
-function changeConfig() {
-  const version = fs.readFileSync('./version.txt').toString()
-  const config = JSON.parse(fs.readFileSync(`./public/config.json`).toString())
-
-  config.version = plusVersion(version)
-
-  fs.writeFileSync(`./public/config.json`, JSON.stringify(config, null, 2))
-  fs.writeFileSync(`./dist/config.json`, JSON.stringify(config, null, 2))
-
+function readThemeConfig() {
+  const config = fs.readJsonSync(themeConfigPath)
+  if (!config.name) {
+    throw new Error('public/config.json is missing "name"')
+  }
+  if (!config.version) {
+    throw new Error('public/config.json is missing "version"')
+  }
   return config
 }
 
-async function zipfiles() {
-  const config = changeConfig()
-
-  if (!fs.existsSync('./tempzip')) {
-    fs.mkdirSync('./tempzip')
+function syncDistConfig(config) {
+  if (!fs.existsSync('./dist')) {
+    throw new Error('dist directory does not exist. Build must complete before packaging.')
   }
-
-  console.log('开始压缩文件')
-  await zipafolder.zip(`./dist`, `./tempzip/${config.name}-v${config.version}.zip`)
-  console.log('压缩包已生成')
+  fs.writeJsonSync(distConfigPath, config, { spaces: 2 })
 }
 
-walk()
+function validateDist() {
+  const requiredPaths = [distConfigPath, './dist/dashboard.blade.php', distJsDir]
+  const missing = requiredPaths.filter((item) => !fs.existsSync(item))
+  if (missing.length > 0) {
+    throw new Error(`Build output is incomplete: ${missing.join(', ')}`)
+  }
+}
+
+async function obfuscateAppBundle() {
+  const files = walkFiles(distJsDir).filter((filePath) => path.basename(filePath).startsWith('app.') && filePath.endsWith('.js'))
+
+  if (files.length === 0) {
+    throw new Error('No app.*.js bundle found to obfuscate')
+  }
+
+  for (const filePath of files) {
+    const content = fs.readFileSync(filePath, 'utf8')
+    const newContent = await convert(content)
+    fs.writeFileSync(filePath, newContent)
+    console.log(`${filePath} obfuscated`)
+  }
+}
+
+async function zipFiles(config) {
+  fs.ensureDirSync(tempZipDir)
+  const zipPath = `${tempZipDir}/${config.name}-v${config.version}.zip`
+  await zipafolder.zip('./dist', zipPath)
+  console.log(`Theme package generated: ${zipPath}`)
+}
+
+async function main() {
+  const config = readThemeConfig()
+  syncDistConfig(config)
+  validateDist()
+  await obfuscateAppBundle()
+  await zipFiles(config)
+}
+
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})
