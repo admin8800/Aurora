@@ -1,0 +1,62 @@
+name: 构建并发布
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "发布版本号，例如 v1.0.0"
+        required: true
+        type: string
+        default: "v1.0.0"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: 构建并发布
+    runs-on: ubuntu-latest
+
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: 拉取源码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: 安装依赖
+        run: npm i
+
+      - name: 构建项目
+        run: npm run build
+
+      - name: 检查发布文件
+        run: |
+          if [ ! -d "tempzip" ]; then
+            echo "错误：tempzip 目录不存在"
+            exit 1
+          fi
+
+          if ! ls tempzip/*.{zip,tar.gz,7z,rar} >/dev/null 2>&1; then
+            echo "错误：tempzip 目录中没有找到压缩包"
+            exit 1
+          fi
+
+      - name: 发布到 GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ inputs.version }}
+          name: ${{ inputs.version }}
+          files: |
+            tempzip/*.zip
+            tempzip/*.tar.gz
+            tempzip/*.7z
+            tempzip/*.rar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
