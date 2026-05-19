@@ -4,12 +4,12 @@
       <h2 class="text-title reveal-ele">{{ $t('新一代多协议加速网络') }}</h2>
       <p class="text-desc reveal-ele">{{ $t('兼容主流客户端与现代协议，自动适配不同网络环境。') }}</p>
       <a-tabs class="tabs reveal-ele" default-active-key="1" tab-position="left">
-        <a-tab-pane key="1" tab="Shadowsocks / VMess / VLESS">
+        <a-tab-pane key="1" tab="Shadowsocks / VLESS">
           <p>{{ $t('覆盖常用代理协议，兼顾速度、兼容性与稳定性。无论是移动端、桌面端，还是软路由环境，都可以快速导入订阅并保持顺畅连接。') }}</p>
-          <p>{{ $t('VLESS 与 VMess 可配合 TLS、WebSocket、gRPC 等传输方式使用，在复杂网络中保持更好的可用性。') }}</p>
+          <p>{{ $t('VLESS 可配合 TLS、WebSocket、gRPC 等传输方式使用，在复杂网络中保持更好的可用性。') }}</p>
         </a-tab-pane>
-        <a-tab-pane key="2" tab="Trojan / REALITY">
-          <p>{{ $t('Trojan 与 REALITY 更适合高质量线路场景，可在保持低延迟的同时减少明显特征。适合日常网页、视频会议、远程办公与跨区服务访问。') }}</p>
+        <a-tab-pane key="2" tab="AnyTLS / REALITY">
+          <p>{{ $t('AnyTLS 与 REALITY 更适合高质量线路场景，可在保持低延迟的同时减少明显特征。适合日常网页、视频会议、远程办公与跨区服务访问。') }}</p>
         </a-tab-pane>
         <a-tab-pane key="3" tab="Hysteria2 / TUIC">
           <p>{{ $t('面向 UDP 与弱网优化，适合移动网络、跨运营商网络和高丢包环境。在游戏、语音、视频通话等场景中，体验更轻快。') }}</p>

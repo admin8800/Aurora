@@ -1,7 +1,7 @@
 <template>
   <div class="home-question">
     <div class="wrapper-box">
-      <h2 class="qa-title reveal-ele">{{ $t('客户最常问的 7 个问题') }}</h2>
+      <h2 class="qa-title reveal-ele">{{ $t('常见问题') }}</h2>
       <div class="qa-list">
         <a-collapse expand-icon-position="right" :bordered="false" accordion>
           <a-collapse-panel key="1" :header="$t('这项服务适合哪些使用场景？')">
@@ -16,8 +16,8 @@
           </a-collapse-panel>
           <a-collapse-panel key="2" :header="$t('支持哪些协议和客户端？')" :disabled="false">
             <div class="qa-awnser">
-              <p>{{ $t('我们支持 Shadowsocks、VMess、VLESS、Trojan、Hysteria2、TUIC 等主流协议，覆盖速度、兼容性和弱网优化等不同需求。') }}</p>
-              <p>{{ $t('常见客户端如 Clash Meta、sing-box、v2rayN、Shadowrocket、Surge、Quantumult X、Surfboard 等都可以通过订阅链接快速导入。') }}</p>
+              <p>{{ $t('我们支持 Shadowsocks、VLESS、AnyTLS、Hysteria2、TUIC 等主流协议，覆盖速度、兼容性和弱网优化等不同需求。') }}</p>
+              <p>{{ $t('常见客户端如 Clash 和 mihomo 系列客户端、sing-box、v2rayN、Shadowrocket、Surge、Quantumult X 等都可以通过订阅链接快速导入。') }}</p>
             </div>
           </a-collapse-panel>
           <a-collapse-panel key="3" :header="$t('线路为什么能保持稳定高速？')" :disabled="false">
@@ -37,12 +37,6 @@
                   <span>{{ $t('定期监控可用性、延迟和解锁情况，发现异常会尽快调整线路。') }}</span>
                 </dd>
               </dl>
-            </div>
-          </a-collapse-panel>
-          <a-collapse-panel key="4" :header="$t('有提供无限流量套餐吗？')" :disabled="false">
-            <div class="qa-awnser">
-              <p>{{ $t('套餐通常会设置明确的流量额度，但不限制正常使用速度。这样可以把线路资源留给真正需要高质量连接的用户。') }}</p>
-              <p>{{ $t('如果你的使用量较大，可以选择更高流量套餐，或在流量接近用尽时购买重置流量包。') }}</p>
             </div>
           </a-collapse-panel>
           <a-icon slot="expandIcon" slot-scope="props" :type="props.isActive ? 'close' : 'plus'" />
