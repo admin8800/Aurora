@@ -122,7 +122,6 @@ export default {
     const time = this.$ls.get('FindTimer')
     if (time) {
       const duration = 60 - (dayjs().valueOf() - time) / 1000
-      console.log('duration', duration, dayjs().valueOf(), time)
       if (duration > 0) {
         this.countdownTimer(duration)
       } else {
@@ -137,7 +136,6 @@ export default {
         asyncLoadLib(['https://www.google.com/recaptcha/api.js?onload=onloadCallback2&render=explicit'], 'google-recaptcha2')
 
         window.onloadCallback2 = () => {
-          // console.log(this.globalConfig.recaptcha_site_key)
           this.wid = window.grecaptcha.render('recaptcha', {
             sitekey: this.globalConfig.recaptcha_site_key,
             callback: () => {
@@ -189,7 +187,6 @@ export default {
       this.$refs.refForm.validate(async (valid) => {
         if (valid) {
           this.loading = true
-          window.conso1e.log(215)
           try {
             await resetPassword({
               email,
@@ -200,7 +197,6 @@ export default {
             this.$router.push('/login')
           } catch {}
           this.loading = false
-          window.conso1e.log(3)
         } else {
           return false
         }

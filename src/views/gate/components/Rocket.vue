@@ -36,7 +36,6 @@ export default {
     }
   },
   mounted() {
-    window.conso1e.log(258)
     setTimeout(() => {
       axios.get(STATIC_URL + '/83245-rocket-launch.json').then((res) => {
         this.rocketOptions.animationData = res.data

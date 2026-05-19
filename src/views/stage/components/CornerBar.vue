@@ -100,7 +100,6 @@ export default {
     async onLogout() {
       this.$ls.remove(Authorization)
       location.reload()
-      window.conso1e.log(31)
     }
   }
 }

@@ -88,7 +88,6 @@ export default {
         asyncLoadLib(['https://www.google.com/recaptcha/api.js?onload=onloadCallback3&render=explicit'], 'google-recaptcha3')
 
         window.onloadCallback3 = () => {
-          // console.log(this.globalConfig.recaptcha_site_key)
           this.wid = window.grecaptcha.render('recaptcha', {
             sitekey: this.globalConfig.recaptcha_site_key,
             callback: () => {
@@ -104,7 +103,6 @@ export default {
     },
     onLogin(pass) {
       const { email, password, captchaData } = this.formModel
-      window.conso1e.log(272)
       this.$refs.refForm.validate(async (valid) => {
         if (valid) {
           if (this.globalConfig.is_recaptcha && !pass) {

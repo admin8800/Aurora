@@ -102,7 +102,6 @@ export default {
       }
     },
     onNoticeShow(row) {
-      window.conso1e.log(44)
       this.visible = false
       const content = row.img_url ? (
         <div>

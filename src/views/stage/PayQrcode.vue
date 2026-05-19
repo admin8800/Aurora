@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     initImg() {
-      window.conso1e.log(211)
       const img = decodeURIComponent(this.$route.query.img)
       if (img.endsWith('jpg', 'png', 'jpeg', 'webp') || img.includes('data:image')) {
         this.imgSrc = img

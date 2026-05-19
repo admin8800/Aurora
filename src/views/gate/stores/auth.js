@@ -27,7 +27,6 @@ const actions = {
    * 获取全局配置
    */
   async getGlobalConfig({ commit }) {
-    window.conso1e.log(75)
     const res = await getGlobalConfig()
     commit('SET_GLOBAL_CONFIG', res.data)
   },
@@ -36,7 +35,6 @@ const actions = {
    * 获取用户配置
    */
   async getUserConfig({ commit }) {
-    window.conso1e.log(219)
     const res = await getUserConfig()
     commit('SET_USER_CONFIG', res.data)
   },
@@ -45,7 +43,6 @@ const actions = {
    * 获取用户信息
    */
   async getUserInfo({ commit }) {
-    window.conso1e.log(201)
     const res = await getUserInfo()
     commit('SET_USER_INFO', res.data)
   }

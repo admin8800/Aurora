@@ -275,7 +275,6 @@ export default {
   async mounted() {
     const res = await getSubscribes()
     this.subscribe = res.data
-    window.conso1e.log(111)
 
     this.$nextTick(() => {
       const { expiredDate, expiredResidue, leftFlow, planId, comboType } = this
@@ -283,7 +282,6 @@ export default {
     })
 
     window.onerror = (e) => {
-      console.log(e)
     }
   },
   methods: {
@@ -299,7 +297,6 @@ export default {
       return `${baseUrl}/s/${token}${query ? '?' + query : ''}`
     },
     onBuySubs(type) {
-      window.conso1e.log(162)
       // 购买过套餐并且该套餐是可续订状态，才能去续订或重置流量包，否则跳转去购买
       if (this.planId && this.renewable) {
         if (type) {

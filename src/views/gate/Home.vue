@@ -53,7 +53,6 @@ export default {
     }
 
     sr.reveal('#reveal .reveal-ele, #reveal .qa-list .ant-collapse-item', slideUp)
-    window.conso1e.log(167)
   }
 }
 </script>

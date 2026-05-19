@@ -70,7 +70,6 @@ export default {
   },
   methods: {
     async getServerData() {
-      window.conso1e.log(145)
       const res = await getServerNodes()
       this.serverData = (res.data ?? []).map((row, index) => {
         const isOnline =

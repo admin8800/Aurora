@@ -88,7 +88,6 @@ export default {
     }
   },
   mounted() {
-    window.conso1e.log(190)
     document.addEventListener(
       'click',
       () => {

@@ -37,7 +37,6 @@ const whiteList = ['/', '/home', '/login', '/register', '/reset-password', '/agr
 
 router.beforeEach(async (to, from, next) => {
   document.title = [APP_NAME, to.meta?.name ?? ''].reverse().join(' - ')
-  window.conso1e.log(19)
   if (to.path === '/error') {
     return next()
   }

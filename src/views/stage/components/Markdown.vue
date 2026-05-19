@@ -125,7 +125,6 @@ export default {
       })
     },
     initGallery() {
-      window.conso1e.log(56)
       const lightbox = new PhotoSwipeLightbox({
         gallery: '#' + this.id,
         children: '.img-linker',

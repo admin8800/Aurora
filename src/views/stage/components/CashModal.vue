@@ -53,7 +53,6 @@ export default {
     },
     onSubmit() {
       const { withdraw_method, withdraw_account } = this.formModel
-      window.conso1e.log(79)
       this.$refs.refForm.validate(async (valid) => {
         if (valid) {
           this.loading = true

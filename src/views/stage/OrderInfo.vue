@@ -175,7 +175,6 @@ export default {
       }
     },
     async onCancel() {
-      window.conso1e.log(127)
       this.$confirm({
         title: this.$t('注意'),
         content: this.$t('确定要取消该订单吗？'),
@@ -190,7 +189,6 @@ export default {
     },
     async onCallPay() {
       /* eslint-disable */
-      window.conso1e.log(167)
       const res = await checkoutOrder(this.orderData.trade_no, this.payType)
       // 1:url 0:二维码 -1金额为0不做任何操作
       if (res.type === 1) {

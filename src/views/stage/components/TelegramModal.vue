@@ -45,7 +45,6 @@ export default {
   },
   methods: {
     async showModal(username) {
-      window.conso1e.log(30)
       this.visible = true
       this.loading = true
       const res = await getSubscribes()

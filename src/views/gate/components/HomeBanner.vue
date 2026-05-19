@@ -3,7 +3,6 @@
     <div class="wrapper-box">
       <div class="earth">
         <lottie v-if="earthOptions.animationData" :options="earthOptions" class="in" :height="800" :width="800" />
-        <!-- <img v-else class="in2" src="../assets/earth2.png" /> -->
       </div>
       <strong class="t1 reveal-ele">
         <span class="t19">Better and</span>
@@ -44,7 +43,6 @@ export default {
     }
   },
   mounted() {
-    window.conso1e.log(5)
     setTimeout(() => {
       axios.get(STATIC_URL + '/turn-earth.json').then((res) => {
         this.earthOptions.animationData = res.data

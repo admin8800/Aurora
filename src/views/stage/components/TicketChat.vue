@@ -75,7 +75,6 @@ export default {
       }, 10 * 1000)
     },
     async onSubmit() {
-      window.conso1e.log(27)
       if (!this.replyContent) {
         return this.$message.warning(this.$t('请输入内容'))
       }

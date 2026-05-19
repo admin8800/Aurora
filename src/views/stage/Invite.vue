@@ -196,7 +196,6 @@ export default {
       }
     },
     async getGiveData() {
-      window.conso1e.log(48)
       const res = await getInviteDetails()
       this.giveData = res.data ?? []
     },
@@ -206,7 +205,6 @@ export default {
       this.$message.success(this.$t('邀请码已复制') + ':' + content)
     },
     async onCreateCode() {
-      window.conso1e.log(95)
       const res = await createInviteCode()
       if (res.data === true) {
         this.$message.success(this.$t('已生成新的邀请码'))
@@ -214,11 +212,9 @@ export default {
       }
     },
     onTransferShow() {
-      window.conso1e.log(19)
       this.$refs.refTransfer.showModal()
     },
     onCashShow() {
-      window.conso1e.log(19)
       this.$refs.refCash.showModal()
     }
   }

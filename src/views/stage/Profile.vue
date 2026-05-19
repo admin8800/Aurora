@@ -138,24 +138,20 @@ export default {
       })
     },
     onJumpLink() {
-      window.conso1e.log(100)
       window.open(this.userConfig.telegram_discuss_link, '_blank')
     },
     async onBindBot() {
       const res = await getBotInfo()
-      console.log(res)
       const username = res.data?.username
       this.$refs.refTelegram.showModal(username)
     },
     onExpireChange(checked) {
-      window.conso1e.log(166)
       updateRemind({ remind_expire: checked ? 1 : 0 })
     },
     onTrafficChange(checked) {
       updateRemind({ remind_traffic: checked ? 1 : 0 })
     },
     onTransferShow() {
-      window.conso1e.log(177)
       this.$refs.refTransfer.showModal()
     },
     onCashShow() {

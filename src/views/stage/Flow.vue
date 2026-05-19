@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     async getFlowData() {
-      window.conso1e.log(189)
       const res = await getFlowList()
       this.flowData = (res.data ?? []).map((row) => {
         return {

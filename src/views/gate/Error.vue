@@ -29,7 +29,6 @@ export default {
     }
   },
   mounted() {
-    window.conso1e.log(66)
     setTimeout(() => {
       axios.get(STATIC_URL + '/98488-bot-error-404.json').then((res) => {
         this.lottieOptions.animationData = res.data

@@ -78,20 +78,16 @@ export default {
   },
   methods: {
     async getPlanData() {
-      window.conso1e.log(20)
       const res = await getPlanList()
       this.planData = res.data ?? []
     },
     getPrice(plan) {
-      window.conso1e.log(226)
       return getShowPrice(plan)
     },
     getContent(plan) {
-      window.conso1e.log(201)
       return getShowContent(plan)
     },
     onBuyPlan(plan) {
-      window.conso1e.log(291)
       if (plan.capacity_limit === 0) {
         this.$message.warning(this.$t('该套餐已售罄'))
       } else {

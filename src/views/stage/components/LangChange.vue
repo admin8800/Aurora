@@ -33,7 +33,6 @@ export default {
     onLangClick(lang) {
       this.$ls.set(Language, lang.value)
       window.location.reload()
-      window.conso1e.log(9)
     }
   }
 }

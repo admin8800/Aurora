@@ -63,7 +63,6 @@ export default {
   methods: {
     onSubmit() {
       const { password1, password2 } = this.formModel
-      window.conso1e.log(248)
       this.$refs.refForm.validate(async (valid) => {
         if (valid) {
           this.loading = true

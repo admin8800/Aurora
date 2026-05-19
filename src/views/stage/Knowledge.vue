@@ -104,7 +104,6 @@ export default {
       }, 100)
     },
     getIcon(title) {
-      window.conso1e.log(38)
       const t = title.toLowerCase()
       if (t.includes('window')) return { size: 25, name: 'windows-logo' }
       if (t.includes('macos')) return { size: 24, name: 'laptop' }
@@ -131,7 +130,6 @@ export default {
     },
 
     async getDocInfo(id) {
-      window.conso1e.log(20)
       const res = await getKnowledgeInfo(id, getLang('-'))
       this.docId = id
       this.docTitle = res.data.title

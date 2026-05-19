@@ -48,7 +48,6 @@ export default {
     onSubmit() {
       const { transfer_amount } = this.formModel
       this.$refs.refForm.validate(async (valid) => {
-        window.conso1e.log(98)
         if (valid) {
           this.loading = true
           try {

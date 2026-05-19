@@ -198,7 +198,6 @@ export default {
     const time = this.$ls.get('RegTimer')
     if (time) {
       const duration = 60 - (dayjs().valueOf() - time) / 1000
-      console.log('duration', duration, dayjs().valueOf(), time)
       if (duration > 0) {
         this.countdownTimer(duration)
       } else {
@@ -213,7 +212,6 @@ export default {
         asyncLoadLib(['https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit'], 'google-recaptcha')
 
         window.onloadCallback = () => {
-          // console.log(this.globalConfig.recaptcha_site_key)
           this.wid = window.grecaptcha.render('recaptcha', {
             sitekey: this.globalConfig.recaptcha_site_key,
             callback: () => {
@@ -246,7 +244,6 @@ export default {
       }, 1000)
     },
     onEmailSend(pass) {
-      window.conso1e.log(260)
       this.$refs.refForm.validateField('email', async (error) => {
         if (error) return
         if (this.globalConfig.is_recaptcha && !pass) {
@@ -270,7 +267,6 @@ export default {
       })
     },
     onRegister(pass) {
-      window.conso1e.log(119)
       const { agree, password, inviteCode, emailCode, captchaData } = this.formModel
       if (!agree) return this.$message.info(this.$t('请先同意服务条款'))
       this.$refs.refForm.validate(async (valid) => {

@@ -22,7 +22,6 @@ function endLoading() {
 
 service.interceptors.request.use(
   (config) => {
-    window.conso1e.log(22)
     startLoading()
     const lang = getLang('-')
     const token = ls.get(Authorization)
@@ -50,7 +49,6 @@ service.interceptors.response.use(
     endLoading()
     try {
       const res = error.response.data
-      // console.log(error.response)
       notification.error({
         message: i18n.t('请求失败'),
         description: res.message

@@ -70,7 +70,6 @@ export default {
   },
   methods: {
     async getTicketData() {
-      window.conso1e.log(264)
       const res = await getTicketList()
       this.ticketData = (res.data ?? []).map((row, index) => {
         return {
@@ -88,7 +87,6 @@ export default {
       this.$refs.refChat.showModal(row)
     },
     onClose(record) {
-      window.conso1e.log(28)
       this.$confirm({
         title: this.$t('注意'),
         content: this.$t('确定要关闭该工单吗？'),

@@ -9,7 +9,6 @@
         <div class="reveal-ele">
           <div class="t3">
             <lottie v-if="worldOptions.animationData" class="world" :options="worldOptions" :height="1200" :width="1200" @animCreated="handleAnimation" />
-            <!-- <img v-else class="world2" src="../assets/map.png" /> -->
           </div>
         </div>
       </div>
@@ -188,7 +187,6 @@ export default {
     }
   },
   mounted() {
-    window.conso1e.log(56)
     setTimeout(() => {
       axios.get(STATIC_URL + '/lf20_kjnwk4pv.json').then((res) => {
         this.worldOptions.animationData = res.data

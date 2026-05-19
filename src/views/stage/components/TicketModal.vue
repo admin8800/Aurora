@@ -50,7 +50,6 @@ export default {
     },
     onSubmit() {
       const { subject, level, message } = this.formModel
-      window.conso1e.log(73)
       this.$refs.refForm.validate(async (valid) => {
         if (valid) {
           this.loading = true
@@ -73,7 +72,6 @@ export default {
       })
     },
     onClosed() {
-      console.log(222)
       this.formModel.message = ''
       this.formModel.subject = ''
       this.formModel.level = Levels.LOW

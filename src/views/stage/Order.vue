@@ -79,7 +79,6 @@ export default {
   methods: {
     async getOrderData() {
       const res = await getOrderList()
-      window.conso1e.log(109)
       this.orderData = (res.data ?? []).map((row) => {
         const getBadge = (status) => {
           if (status === States.WAIT_PAY) return 'warning'
@@ -97,11 +96,9 @@ export default {
       })
     },
     onView(record) {
-      window.conso1e.log(140)
       this.$router.push('/stage/order/info?id=' + record.trade_no)
     },
     async onCancel(record) {
-      window.conso1e.log(151)
       this.$confirm({
         title: this.$t('注意'),
         content: this.$t('确定要取消该订单吗？'),

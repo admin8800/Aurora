@@ -178,7 +178,6 @@ export default {
     },
     percent() {
       const percent = parseFloat(((this.usedFlow / this.allFlow) * 100).toFixed(2))
-      console.log('percent', percent)
       return percent
     },
     showResetPack() {
@@ -220,7 +219,6 @@ export default {
     },
     onPlanChange({ target }) {
       const key = target.value
-      console.log('key', key)
       const item = planTypes.find((item) => item.key === key)
       if (key === 'reset_price') {
         this.select = {
@@ -241,7 +239,6 @@ export default {
       }
     },
     onMakeOrder() {
-      window.conso1e.log(34)
       const make = async () => {
         this.loading = true
         try {
@@ -294,7 +291,6 @@ export default {
       }
     },
     async onVerifyCoupon() {
-      window.conso1e.log(70)
       try {
         if (!this.couponCode) {
           return this.$notification.error({
@@ -304,7 +300,6 @@ export default {
         }
 
         const { id } = this.$route.query
-        // console.log('id', typeof id)
         const res = await verifyCoupon({
           code: this.couponCode,
           plan_id: id
@@ -314,7 +309,6 @@ export default {
         // 为Null表示优惠券不限制套餐使用，如果有值则必须包含当前套餐ID
         if (res.data.value && (res.data.limit_plan_ids === null || res.data.limit_plan_ids.includes(String(id)))) {
           this.couponValue = res.data.value
-          console.log('couponValue', this.couponValue)
         } else {
           this.couponValue = 0
           this.$notification.error({

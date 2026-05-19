@@ -184,7 +184,6 @@ export default {
       }
     },
     async initFlowChart() {
-      window.conso1e.log(215)
       const { data = [] } = await getFlowList()
       this.chartData = data
       if (data.length === 0) return

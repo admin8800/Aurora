@@ -134,7 +134,6 @@ export default {
     }
   },
   mounted() {
-    window.conso1e.log(23)
     window.addEventListener(
       'resize',
       () => {
