@@ -1,5 +1,5 @@
 <template>
-  <div class="copyright">© {{ $appName }} 2017-2023</div>
+  <div class="copyright">© {{ $appName }} 2026</div>
 </template>
 
 <script>

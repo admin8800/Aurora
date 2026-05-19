@@ -2,55 +2,55 @@
   <div class="home-spec">
     <div class="wrapper-box">
       <div class="spec-title">
-        <h2 class="text-title reveal-ele">{{ $t('大陆首选 亚洲区最佳 VPN') }}</h2>
-        <p class="text-desc reveal-ele">{{ $t('历经5年研发，为大中华地区用户保护私隐，逾越网路封锁。') }}</p>
+        <h2 class="text-title reveal-ele">{{ $t('为现代网络体验而优化') }}</h2>
+        <p class="text-desc reveal-ele">{{ $t('覆盖浏览、流媒体、AI 工具、远程办公与多设备使用。') }}</p>
       </div>
       <div class="spec-list">
         <ul>
           <li class="reveal-ele">
             <svg-icon name="lightning" />
-            <span class="tit">{{ $t('快如闪电') }}</span>
-            <p class="desc">{{ $t('高价购入IPLC内网专线，精心优化传输算法，只为您上网更爽快。') }}</p>
+            <span class="tit">{{ $t('高速连接') }}</span>
+            <p class="desc">{{ $t('精选优质线路并持续优化路由，减少高峰拥堵和跨区访问延迟。') }}</p>
           </li>
           <li class="reveal-ele">
             <svg-icon name="binoculars" />
-            <span class="tit">{{ $t('稳定穿墙') }}</span>
-            <p class="desc">{{ $t('最先进流量隐藏技术，将VPN穿墙流量化身网页浏览，免于防火墙干扰。') }}</p>
+            <span class="tit">{{ $t('稳定可用') }}</span>
+            <p class="desc">{{ $t('多协议与多入口组合，应对不同运营商和复杂网络环境。') }}</p>
           </li>
           <li class="reveal-ele">
             <svg-icon name="shield-check" />
-            <span class="tit">{{ $t('增强安全') }}</span>
-            <p class="desc">{{ $t('即使通过公共WiFi上网，高强度数据加密也能保护你的私隐不被监视。') }}</p>
+            <span class="tit">{{ $t('安全加密') }}</span>
+            <p class="desc">{{ $t('在公共 Wi-Fi 和移动网络中保护连接，降低敏感数据暴露风险。') }}</p>
           </li>
           <li class="reveal-ele">
             <svg-icon name="alien" />
-            <span class="tit">{{ $t('保持匿名') }}</span>
-            <p class="desc">{{ $t('私密浏览？浏览器无痕模式不够。我们的VPN为您隐藏IP以掩藏踪迹。') }}</p>
+            <span class="tit">{{ $t('隐私保护') }}</span>
+            <p class="desc">{{ $t('隐藏真实网络地址，减少跨站追踪，让日常访问更安心。') }}</p>
           </li>
           <li class="reveal-ele">
             <svg-icon name="lock" />
-            <span class="tit">{{ $t('解锁内容') }}</span>
-            <p class="desc">{{ $t('节点全解锁Netflix、Tiktok等流媒体服务。你可从任何地方欣赏异国限定媒体节目。') }}</p>
+            <span class="tit">{{ $t('内容解锁') }}</span>
+            <p class="desc">{{ $t('支持 Netflix、Disney+、YouTube、ChatGPT、Claude、Gemini 等服务访问。') }}</p>
           </li>
           <li class="reveal-ele">
             <svg-icon name="devices" />
             <span class="tit">{{ $t('多端支持') }}</span>
-            <p class="desc">{{ $t('支持Android、iOS、MacOS、Windows、Linux、路由器。') }}</p>
+            <p class="desc">{{ $t('兼容 Android、iOS、Windows、macOS、Linux 与 OpenWrt 路由器。') }}</p>
           </li>
           <li class="reveal-ele">
             <svg-icon name="anchor-simple" />
-            <span class="tit">{{ $t('定制服务') }}</span>
-            <p class="desc">{{ $t('为满足特定用户群体，根据需求以提供满足特定需求的服务。') }}</p>
+            <span class="tit">{{ $t('灵活套餐') }}</span>
+            <p class="desc">{{ $t('按需选择周期、流量和节点权限，适配轻量到高频使用。') }}</p>
           </li>
           <li class="reveal-ele">
             <svg-icon name="trend-up" />
             <span class="tit">{{ $t('智能优化') }}</span>
-            <p class="desc">{{ $t('从入口到落地精选优质运营商，多层线路优化，负载均衡设定。') }}</p>
+            <p class="desc">{{ $t('根据节点负载与访问目标调度线路，保持更顺畅的使用体验。') }}</p>
           </li>
           <li class="reveal-ele">
             <svg-icon name="chat-teardrop-dots" />
             <span class="tit">{{ $t('客户支持') }}</span>
-            <p class="desc">{{ $t('提供Telegram、邮件、工单7x24小时客服支持，帮助客户解决疑难问题。') }}</p>
+            <p class="desc">{{ $t('提供工单、邮件或社群支持，协助处理配置、订阅和连接问题。') }}</p>
           </li>
         </ul>
       </div>

@@ -1,22 +1,22 @@
 <template>
   <div class="home-advance">
     <div class="wrapper-box">
-      <h2 class="text-title reveal-ele">{{ $t('最先进开源协议和我们的自研秘技') }}</h2>
-      <p class="text-desc reveal-ele">{{ $t('一个服务，对接多种协议，应对多样网路环境。') }}</p>
+      <h2 class="text-title reveal-ele">{{ $t('新一代多协议加速网络') }}</h2>
+      <p class="text-desc reveal-ele">{{ $t('兼容主流客户端与现代协议，自动适配不同网络环境。') }}</p>
       <a-tabs class="tabs reveal-ele" default-active-key="1" tab-position="left">
-        <a-tab-pane key="1" tab="ShadowSocksR / ShadowSocks">
-          <p>{{ $t('ShadowSocks 是一种无连接无状态的代理协议。它承载 TCP UDP 数据，可轻松穿透世界上最强国家防火墙，中国的 GFW 。') }}</p>
-          <p>{{ $t('ShadowSocksR 是前者的主要分支，修补了安全漏洞，扩展了加密选项，增加了流量混淆能力。') }}</p>
+        <a-tab-pane key="1" tab="Shadowsocks / VMess / VLESS">
+          <p>{{ $t('覆盖常用代理协议，兼顾速度、兼容性与稳定性。无论是移动端、桌面端，还是软路由环境，都可以快速导入订阅并保持顺畅连接。') }}</p>
+          <p>{{ $t('VLESS 与 VMess 可配合 TLS、WebSocket、gRPC 等传输方式使用，在复杂网络中保持更好的可用性。') }}</p>
         </a-tab-pane>
-        <a-tab-pane key="2" tab="V2Ray / Vmess">
-          <p>{{ $t('V2Ray 是一个流量转发软件平台。它支持多种代理协议，并允许这些协议与多种传输层协议配合使用。而 VMess 是这个平台上原创的代理协议。与 TLS 传输方式配合使用的时候，他可以完美模拟 HTTPS 上网浏览。') }}</p>
+        <a-tab-pane key="2" tab="Trojan / REALITY">
+          <p>{{ $t('Trojan 与 REALITY 更适合高质量线路场景，可在保持低延迟的同时减少明显特征。适合日常网页、视频会议、远程办公与跨区服务访问。') }}</p>
         </a-tab-pane>
-        <a-tab-pane key="3" :tab="$t('自研秘技')">
-          <p>{{ $t('我们自研的私有协议，可以模拟多种网页浏览场景。使得防火墙无法可靠区分 VPN 数据浏览。如强行阻拦亦会影响正常使用网络，因此连接无法有效拦截。') }}</p>
+        <a-tab-pane key="3" tab="Hysteria2 / TUIC">
+          <p>{{ $t('面向 UDP 与弱网优化，适合移动网络、跨运营商网络和高丢包环境。在游戏、语音、视频通话等场景中，体验更轻快。') }}</p>
         </a-tab-pane>
       </a-tabs>
       <div class="btns reveal-ele">
-        <a-button size="large" type="primary" @click="$router.push('/login')">{{ $t('立即尝试多协议 VPN 服务') }}</a-button>
+        <a-button size="large" type="primary" @click="$router.push('/login')">{{ $t('立即体验多协议加速服务') }}</a-button>
       </div>
     </div>
   </div>

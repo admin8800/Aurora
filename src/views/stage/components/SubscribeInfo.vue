@@ -154,7 +154,7 @@ import qrcode from 'qrcode'
 import '../styles/imp-btn.scss'
 import { Empty } from 'ant-design-vue'
 import duration from 'dayjs/plugin/duration'
-import { CLIENT_IOS, CLIENT_ANDROID, CLIENT_WINDOWS, CLIENT_MACOS, CLIENT_OPENWRT, CLIENT_LINUX } from '@/core/constants'
+import { CLIENT_IOS, CLIENT_ANDROID, CLIENT_WINDOWS, CLIENT_MACOS, CLIENT_OPENWRT, CLIENT_LINUX, SERVER_URL } from '@/core/constants'
 
 dayjs.extend(duration)
 
@@ -306,6 +306,14 @@ export default {
     getExpiredDate() {
       return this.$options.filters.date(this.expiredDate)
     },
+    getSubscribeUrl(params = {}) {
+      const baseUrl = (SERVER_URL || location.origin).replace(/\/$/, '')
+      const token = encodeURIComponent(this.subscribe.token)
+      const query = Object.keys(params)
+        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+        .join('&')
+      return `${baseUrl}/s/${token}${query ? '?' + query : ''}`
+    },
     onBuySubs(type) {
       window.conso1e.log(162)
       // 购买过套餐并且该套餐是可续订状态，才能去续订或重置流量包，否则跳转去购买
@@ -325,8 +333,7 @@ export default {
       })
     },
     async onImport(type) {
-      const token = this.subscribe.token
-      const url = `${location.origin}/api/v1/client/subscribe?token=${token}`
+      const url = this.getSubscribeUrl()
       switch (type) {
         case 'copy':
           copy(url)
@@ -351,7 +358,7 @@ export default {
           this.openClient(
             'shadowrocket://add/sub://' +
               window
-                .btoa(url + '&flag=shadowrocket')
+                .btoa(this.getSubscribeUrl({ flag: 'shadowrocket' }))
                 .replace(/\+/g, '-')
                 .replace(/\//g, '_')
                 .replace(/=+$/, '') +

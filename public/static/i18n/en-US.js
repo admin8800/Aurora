@@ -357,7 +357,7 @@ langs.enUS = {
     'Remember or not. We will record your traffic metadata for a short time and regularly delete old data.',
   '我们努力改善您的互联网体验，让您自由重来：免受审查，监控和电讯商限速。':
     'We strive to improve your internet experience and set you free again: free from censorship, monitoring and telecom throttling.',
-  '从 8 个国家地区的 38 组服务器集群中任意选择。您可到达网路上任何地方。':
+  '从多个国家地区的多组服务器集群中任意选择。您可到达网路上任何地方。':
     'Choose freely from 38 server clusters in 8 countries and regions. You can go anywhere on the network.',
   '对于来自中国的客户，我们的支付宝接口将支付流程简化为二维码扫描。轻松一秒过。':
     'For customers from China, our Alipay interface simplifies the payment process to QR code scanning. Easy one second pass.',

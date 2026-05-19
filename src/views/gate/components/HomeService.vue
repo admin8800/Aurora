@@ -4,7 +4,7 @@
       <div class="wrapper-box">
         <h2 class="text-title reveal-ele">{{ $t('多组服务器集群覆盖多个国家地区') }}</h2>
         <p class="text-desc reveal-ele">
-          {{ $t('从 8 个国家地区的 38 组服务器集群中任意选择。您可到达网路上任何地方。') }}
+          {{ $t('从多个国家地区的多组服务器集群中任意选择。您可到达网路上任何地方。') }}
         </p>
         <div class="reveal-ele">
           <div class="t3">
