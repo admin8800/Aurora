@@ -43,20 +43,21 @@ jobs:
             exit 1
           fi
 
-          if ! ls tempzip/*.{zip,tar.gz,7z,rar} >/dev/null 2>&1; then
+          files=$(find tempzip -maxdepth 1 -type f \( -name "*.zip" -o -name "*.tar.gz" -o -name "*.7z" -o -name "*.rar" \))
+
+          if [ -z "$files" ]; then
             echo "错误：tempzip 目录中没有找到压缩包"
             exit 1
           fi
+
+          echo "找到以下压缩包："
+          echo "$files"
 
       - name: 发布到 GitHub Release
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ inputs.version }}
           name: ${{ inputs.version }}
-          files: |
-            tempzip/*.zip
-            tempzip/*.tar.gz
-            tempzip/*.7z
-            tempzip/*.rar
+          files: tempzip/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
