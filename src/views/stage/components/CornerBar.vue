@@ -40,7 +40,7 @@ import { mapState } from 'vuex'
 import { Authorization } from '@/core/utils/ls'
 import { Darkmode } from '@/core/utils/ls'
 import BellNotice from './BellNotice'
-import * as darkreader from 'darkreader'
+import { disableDarkMode, enableDarkMode, isDarkModeEnabled } from '@/core/utils/darkmode'
 
 export default {
   name: 'CornerBar',
@@ -79,22 +79,16 @@ export default {
       immediate: false,
       handler(isDarkMode) {
         if (isDarkMode) {
-          darkreader.enable({
-            brightness: 100,
-            contrast: 90,
-            sepia: 10
-          })
-          document.body.classList.add('is-darkmode')
+          enableDarkMode()
         } else {
-          darkreader.disable()
-          document.body.classList.remove('is-darkmode')
+          disableDarkMode()
         }
         this.$ls.set(Darkmode, isDarkMode ? 'dark' : 'light')
       }
     }
   },
   mounted() {
-    this.isDarkMode = darkreader.isEnabled()
+    this.isDarkMode = isDarkModeEnabled()
   },
   methods: {
     async onLogout() {

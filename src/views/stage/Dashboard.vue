@@ -116,7 +116,7 @@ import * as echarts from 'echarts/core'
 import { LineChart } from 'echarts/charts'
 import { TitleComponent, TooltipComponent, GridComponent, DatasetComponent, TransformComponent } from 'echarts/components'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
-import { CanvasRenderer } from 'echarts/renderers'
+import { SVGRenderer } from 'echarts/renderers'
 import { getAccountInfo } from './apis/dashboard'
 import { getFlowList } from './apis/flow'
 import { ComboEnum } from './enums/buysubs'
@@ -125,7 +125,7 @@ import dayjs from 'dayjs'
 import bytes from 'bytes'
 import { mapState } from 'vuex'
 
-echarts.use([TitleComponent, TooltipComponent, GridComponent, DatasetComponent, TransformComponent, LineChart, LabelLayout, UniversalTransition, CanvasRenderer])
+echarts.use([TitleComponent, TooltipComponent, GridComponent, DatasetComponent, TransformComponent, LineChart, LabelLayout, UniversalTransition, SVGRenderer])
 
 export default {
   name: 'Dashboard',
@@ -189,7 +189,7 @@ export default {
       if (data.length === 0) return
       await this.$nextTick()
       const el = this.$refs.refChart
-      const chart = echarts.init(el)
+      const chart = echarts.init(el, null, { renderer: 'svg' })
       chart.setOption({
         tooltip: {
           trigger: 'axis',

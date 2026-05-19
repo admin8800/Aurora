@@ -4,7 +4,6 @@ import App from './App'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.min.css'
 import VWave from 'v-wave'
-import * as darkreader from 'darkreader'
 
 import './core/styles'
 import './icons'
@@ -13,6 +12,7 @@ import { APP_NAME, APP_DESC, APP_LOGO, APP_VERSION } from './core/constants'
 import { v4 as uuidV4 } from 'uuid'
 import './core/filters'
 import i18n from './i18n'
+import { disableDarkMode, enableDarkMode } from './core/utils/darkmode'
 
 Vue.prototype.$appName = APP_NAME
 Vue.prototype.$appDesc = APP_DESC
@@ -26,13 +26,9 @@ Vue.use(VWave)
 Vue.config.productionTip = false
 
 if (window.isDarkMode()) {
-  darkreader.enable({
-    brightness: 100,
-    contrast: 90,
-    sepia: 10
-  })
+  enableDarkMode()
 } else {
-  darkreader.disable()
+  disableDarkMode()
 }
 
 new Vue({

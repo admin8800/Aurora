@@ -7,7 +7,7 @@
           {{ $t('从多个国家地区的多组服务器集群中任意选择。您可到达网路上任何地方。') }}
         </p>
         <div class="reveal-ele">
-          <div class="t3">
+          <div ref="refAnimation" class="t3">
             <lottie v-if="worldOptions.animationData" class="world" :options="worldOptions" :height="1200" :width="1200" @animCreated="handleAnimation" />
           </div>
         </div>
@@ -46,6 +46,7 @@ import tencent from '../assets/tencent.svg'
 import vultr from '../assets/vultr.svg'
 import axios from 'axios'
 import { STATIC_URL } from '@/core/constants'
+import { bindAnimationVisibility, onVisible, prefersReducedMotion } from '@/core/utils/motion'
 
 export default {
   name: 'HomeService',
@@ -56,8 +57,14 @@ export default {
     return {
       anim: {},
       worldOptions: {
-        animationData: null
-      }
+        animationData: null,
+        renderer: 'svg',
+        rendererSettings: {
+          progressiveLoad: true
+        }
+      },
+      destroyVisibleObserver: null,
+      destroyAnimationObserver: null
     }
   },
   computed: {
@@ -187,16 +194,25 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
+    this.destroyVisibleObserver = onVisible(this.$refs.refAnimation, () => {
       axios.get(STATIC_URL + '/lf20_kjnwk4pv.json').then((res) => {
         this.worldOptions.animationData = res.data
       })
-    }, 0)
+    })
+  },
+  beforeDestroy() {
+    this.destroyVisibleObserver && this.destroyVisibleObserver()
+    this.destroyAnimationObserver && this.destroyAnimationObserver()
   },
   methods: {
     handleAnimation(anim) {
       this.anim = anim
+      if (prefersReducedMotion()) {
+        this.anim.goToAndStop(0, true)
+        return
+      }
       this.anim.setSpeed(0.4)
+      this.destroyAnimationObserver = bindAnimationVisibility(this.$refs.refAnimation, this.anim)
     }
   }
 }

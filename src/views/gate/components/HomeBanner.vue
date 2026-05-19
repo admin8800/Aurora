@@ -1,8 +1,8 @@
 <template>
   <div class="home-banner">
     <div class="wrapper-box">
-      <div class="earth">
-        <lottie v-if="earthOptions.animationData" :options="earthOptions" class="in" :height="800" :width="800" />
+      <div ref="refAnimation" class="earth">
+        <lottie v-if="earthOptions.animationData" :options="earthOptions" class="in" :height="800" :width="800" @animCreated="handleAnimation" />
       </div>
       <strong class="t1 reveal-ele">
         <span class="t19">Better and</span>
@@ -29,6 +29,7 @@
 import Lottie from 'vue-lottie'
 import axios from 'axios'
 import { STATIC_URL } from '@/core/constants'
+import { bindAnimationVisibility, onVisible, prefersReducedMotion } from '@/core/utils/motion'
 
 export default {
   name: 'HomeBanner',
@@ -38,16 +39,35 @@ export default {
   data() {
     return {
       earthOptions: {
-        animationData: null
-      }
+        animationData: null,
+        renderer: 'svg',
+        rendererSettings: {
+          progressiveLoad: true
+        }
+      },
+      destroyVisibleObserver: null,
+      destroyAnimationObserver: null
     }
   },
   mounted() {
-    setTimeout(() => {
+    this.destroyVisibleObserver = onVisible(this.$refs.refAnimation, () => {
       axios.get(STATIC_URL + '/turn-earth.json').then((res) => {
         this.earthOptions.animationData = res.data
       })
-    }, 0)
+    })
+  },
+  beforeDestroy() {
+    this.destroyVisibleObserver && this.destroyVisibleObserver()
+    this.destroyAnimationObserver && this.destroyAnimationObserver()
+  },
+  methods: {
+    handleAnimation(anim) {
+      if (prefersReducedMotion()) {
+        anim.goToAndStop(0, true)
+        return
+      }
+      this.destroyAnimationObserver = bindAnimationVisibility(this.$refs.refAnimation, anim)
+    }
   }
 }
 </script>
