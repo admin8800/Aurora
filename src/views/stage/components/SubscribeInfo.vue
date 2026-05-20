@@ -111,14 +111,6 @@
           <i class="metron-shadowrocket" />
           Shadowrocket {{ $t('订阅') }}
         </div>
-        <div v-wave class="btn btn-surfboard" @click="onImport('surfboard')">
-          <i class="metron-surfboard" />
-          Surfboard {{ $t('订阅') }}
-        </div>
-        <div v-wave class="btn btn-quantumultx" @click="onImport('quantumultx')">
-          <i class="metron-quantumultx" />
-          Quantumult X {{ $t('订阅') }}
-        </div>
 
         <div v-if="comboType === ComboEnum.UNBUY" class="tips">{{ $t('未购买订阅') }}</div>
         <div v-else-if="comboType === ComboEnum.PERIOD && expiredResidue <= 0" class="tips">{{ $t('订阅已过期') }}</div>
@@ -153,7 +145,8 @@ import qrcode from 'qrcode'
 import '../styles/imp-btn.scss'
 import { Empty } from 'ant-design-vue'
 import duration from 'dayjs/plugin/duration'
-import { CLIENT_IOS, CLIENT_ANDROID, CLIENT_WINDOWS, CLIENT_MACOS, CLIENT_OPENWRT, CLIENT_LINUX, SERVER_URL } from '@/core/constants'
+import { CLIENT_IOS, CLIENT_ANDROID, CLIENT_WINDOWS, CLIENT_MACOS, CLIENT_OPENWRT, CLIENT_LINUX } from '@/core/constants'
+import { getSubscribeUrl } from '../utils/subscribe-url'
 
 dayjs.extend(duration)
 
@@ -289,12 +282,7 @@ export default {
       return this.$options.filters.date(this.expiredDate)
     },
     getSubscribeUrl(params = {}) {
-      const baseUrl = (SERVER_URL || location.origin).replace(/\/$/, '')
-      const token = encodeURIComponent(this.subscribe.token)
-      const query = Object.keys(params)
-        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-        .join('&')
-      return `${baseUrl}/s/${token}${query ? '?' + query : ''}`
+      return getSubscribeUrl(this.subscribe, params)
     },
     onBuySubs(type) {
       // 购买过套餐并且该套餐是可续订状态，才能去续订或重置流量包，否则跳转去购买
@@ -349,21 +337,7 @@ export default {
           )
           break
 
-        case 'quantumultx':
-          this.openClient(
-            'quantumult-x:///update-configuration?remote-resource=' +
-              encodeURI(
-                JSON.stringify({
-                  server_remote: [url + ', tag=' + this.$appName]
-                })
-              ),
-            type
-          )
-          break
 
-        case 'surfboard':
-          this.openClient('surfboard:///install-config?url=' + encodeURIComponent(url) + '&name=' + this.$appName, type)
-          break
       }
     }
   }

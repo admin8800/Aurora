@@ -30,6 +30,7 @@
 
 <script>
 import { getSubscribes } from '../apis/subscribe'
+import { getSubscribeUrl } from '../utils/subscribe-url'
 import copy from 'copy-to-clipboard'
 
 export default {
@@ -50,8 +51,7 @@ export default {
       const res = await getSubscribes()
       this.username = '@' + username
       this.usernameLink = 'https://t.me/' + username
-      // 直接用当前域名，不用后台配置的域名，4月16号说的
-      this.botUrl = `/bind ${location.origin}/api/v1/client/subscribe?token=${res.data.token}`
+      this.botUrl = `/bind ${getSubscribeUrl(res.data)}`
       this.loading = false
     },
     onCopy() {

@@ -66,24 +66,6 @@
     box-shadow: 0 1px 6px rgb(1, 154, 166);
     /*margin-bottom: 16px;*/
   }
-  .btn-quantumult,
-  .btn-Quantumult {
-    background: linear-gradient(to right, black, black) !important;
-    color: white !important;
-    border-color: transparent;
-    border: none;
-    box-shadow: 0 1px 6px #000000d1;
-    /*margin-bottom: 16px;*/
-  }
-  .btn-quantumultx,
-  .btn-QuantumultX {
-    background: linear-gradient(to right, #1c2452, #1c2452) !important;
-    color: white !important;
-    border-color: transparent;
-    border: none;
-    box-shadow: 0 1px 6px #29305ccc;
-    /*margin-bottom: 16px;*/
-  }
   .btn-shadowrocket,
   .btn-Shadowrocket {
     background: linear-gradient(to right, #7c99ec, #5aadee) !important;
@@ -147,14 +129,6 @@
     box-shadow: 0 1px 6px #0e1f39bf;
     /*margin-bottom: 16px;*/
   }
-  .btn-surfboard {
-    background: linear-gradient(to right, #2c2305, #49190b) !important;
-    color: white !important;
-    border-color: transparent;
-    border: none;
-    box-shadow: 0 1px 6px #29305ccc;
-    /*margin-bottom: 16px;*/
-  }
   .btn-uucloud {
     background: linear-gradient(to right, #d52c8b, #ed5c45) !important;
     color: white !important;
@@ -190,17 +164,8 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .metron-quantumultx:before {
-    content: '\e900';
-  }
   .metron-surge:before {
     content: '\e901';
-  }
-  .metron-quantumult:before {
-    content: '\e902';
-  }
-  .metron-surfboard:before {
-    content: '\e903';
   }
   .metron-shadowrocket:before {
     content: '\e904';
