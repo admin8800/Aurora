@@ -12,6 +12,7 @@
 <script>
 import { Language } from '@/core/utils/ls'
 import { applyLangClass } from '@/i18n'
+import { APP_NAME } from '@/core/constants'
 
 export default {
   name: 'LangChange',
@@ -35,6 +36,8 @@ export default {
       this.$ls.set(Language, lang.value)
       this.$i18n.locale = lang.value
       applyLangClass(lang.value)
+      const routeTitle = this.$route.meta?.nameKey ? this.$t(this.$route.meta.nameKey) : this.$route.meta?.name
+      document.title = [APP_NAME, routeTitle ?? ''].reverse().join(' - ')
     }
   }
 }

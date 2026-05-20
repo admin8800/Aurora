@@ -102,7 +102,7 @@
 
 <script>
 import { getPlanInfo, makePlanOrder, verifyCoupon, getSubscribes } from './apis/subscribe'
-import { getShowPrice, getShowContent, planTypes } from './utils/plan'
+import { getShowPrice, getShowContent, planTypes, translatePlanType } from './utils/plan'
 import { CouponEnum, ComboEnum } from './enums/buysubs'
 import bytes from 'bytes'
 import dayjs from 'dayjs'
@@ -220,6 +220,7 @@ export default {
     onPlanChange({ target }) {
       const key = target.value
       const item = planTypes.find((item) => item.key === key)
+      const planType = item ? translatePlanType(item) : null
       if (key === 'reset_price') {
         this.select = {
           key,
@@ -231,8 +232,8 @@ export default {
       } else {
         this.select = {
           key,
-          label: item?.label,
-          label2: item?.label2,
+          label: planType?.label,
+          label2: planType?.label2,
           cost: this.plan[key],
           flow: bytes.parse(this.plan.transfer_enable + 'GB') // 统一转为字节
         }

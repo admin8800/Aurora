@@ -4,6 +4,7 @@ import store from './store'
 import { getStaticRoutes } from '../utils/route'
 import ls, { Authorization } from '../utils/ls'
 import { APP_NAME } from '../constants'
+import i18n from '@/i18n'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -56,7 +57,8 @@ function validateTokenSilently() {
 }
 
 router.beforeEach(async (to, from, next) => {
-  document.title = [APP_NAME, to.meta?.name ?? ''].reverse().join(' - ')
+  const routeTitle = to.meta?.nameKey ? i18n.t(to.meta.nameKey) : to.meta?.name
+  document.title = [APP_NAME, routeTitle ?? ''].reverse().join(' - ')
   if (to.path === '/error') {
     return next()
   }

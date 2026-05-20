@@ -1,5 +1,4 @@
 import { LAND_PAGE } from '@/core/constants'
-import i18n from '@/i18n'
 
 export default [
   {
@@ -12,7 +11,7 @@ export default [
     name: 'Home',
     component: () => import('../Home.vue'),
     meta: {
-      name: i18n.t('首页')
+      nameKey: '首页'
     }
   },
   {
@@ -20,7 +19,7 @@ export default [
     name: 'Login',
     component: () => import('../Login.vue'),
     meta: {
-      name: i18n.t('登录')
+      nameKey: '登录'
     }
   },
   {
@@ -28,7 +27,7 @@ export default [
     name: 'Register',
     component: () => import('../Register.vue'),
     meta: {
-      name: i18n.t('注册')
+      nameKey: '注册'
     }
   },
   {
@@ -36,7 +35,7 @@ export default [
     name: 'ResetPassword',
     component: () => import('../ResetPassword.vue'),
     meta: {
-      name: i18n.t('重置密码')
+      nameKey: '重置密码'
     }
   },
   {
@@ -44,7 +43,7 @@ export default [
     name: 'Agreement',
     component: () => import('../Agreement.vue'),
     meta: {
-      name: i18n.t('服务协议')
+      nameKey: '服务协议'
     }
   },
   {
@@ -52,7 +51,7 @@ export default [
     name: 'Error',
     component: () => import('../Error.vue'),
     meta: {
-      name: i18n.t('异常')
+      nameKey: '异常'
     }
   }
 ]

@@ -10,11 +10,13 @@
     <a-table v-if="ticketData" :data-source="ticketData" :pagination="false" row-key="id" table-layout="fixed" :scroll="{ x: 970 }" class="ticket-table data-table use-shadow">
       <a-table-column key="index" data-index="index" title="#" width="60px" />
       <a-table-column key="subject" data-index="subject" :title="$t('主题')" width="200px" />
-      <a-table-column key="levelLabel" data-index="levelLabel" :title="$t('工单级别')" width="100px" />
-      <a-table-column key="statusLabel" data-index="statusLabel" :title="$t('工单状态')" width="100px">
+      <a-table-column key="level" data-index="level" :title="$t('工单级别')" width="100px">
+        <span slot="customRender" slot-scope="text">{{ getLevelLabel(text) }}</span>
+      </a-table-column>
+      <a-table-column key="status" data-index="status" :title="$t('工单状态')" width="100px">
         <div slot="customRender" slot-scope="text, record">
           <a-badge :status="record.status === States.HANDLING ? 'error' : 'processing'" />
-          {{ text }}
+          {{ getStatusLabel(text) }}
         </div>
       </a-table-column>
       <a-table-column key="created_at" data-index="created_at" :title="$t('创建时间')" width="170px">
@@ -74,11 +76,15 @@ export default {
       this.ticketData = (res.data ?? []).map((row, index) => {
         return {
           ...row,
-          index: index + 1,
-          levelLabel: Levels.getLabel(row.level),
-          statusLabel: States.getLabel(row.status)
+          index: index + 1
         }
       })
+    },
+    getLevelLabel(level) {
+      return Levels.getLabel(level)
+    },
+    getStatusLabel(status) {
+      return States.getLabel(status)
     },
     onAdd() {
       this.$refs.refModal.showModal()

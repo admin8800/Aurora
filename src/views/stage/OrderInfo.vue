@@ -32,7 +32,7 @@
               </div>
               <div class="item">
                 <span class="tit">{{ $t('类型/周期') }}:</span>
-                <span class="value">{{ orderData.periodLabel }}</span>
+                <span class="value">{{ periodLabel }}</span>
               </div>
               <div class="item">
                 <span class="tit">{{ $t('产品流量') }}:</span>
@@ -117,7 +117,7 @@
 
 <script>
 import { getOrderInfo, cancelOrder, checkoutOrder, getOrderPayments } from './apis/order'
-import { planTypes } from './utils/plan'
+import { planTypes, translatePlanType } from './utils/plan'
 import { States } from './enums/order'
 import bytes from 'bytes'
 
@@ -135,6 +135,10 @@ export default {
   computed: {
     orderStateLabel() {
       return States.getLabel(this.orderData.status)
+    },
+    periodLabel() {
+      const planType = planTypes.find((item) => item.key === this.orderData.period)
+      return planType ? translatePlanType(planType).label2 : ''
     },
     paymentWidth() {
       const w = Math.max.apply(
@@ -162,7 +166,6 @@ export default {
     async getOrderData() {
       const res = await getOrderInfo(this.$route.query.id)
       const orderData = res.data ?? {}
-      orderData.periodLabel = planTypes.find((item) => item.key === orderData.period)?.label2
       orderData.flowValue = bytes.parse(orderData.plan.transfer_enable + 'GB') // 统一转为字节
 
       this.orderData = orderData

@@ -1,5 +1,3 @@
-import i18n from '@/i18n'
-
 export default [
   {
     path: '/stage',
@@ -12,7 +10,7 @@ export default [
         name: 'Dashboard',
         component: () => import('../Dashboard.vue'),
         meta: {
-          name: i18n.t('仪表盘')
+          nameKey: '仪表盘'
         }
       },
       {
@@ -20,7 +18,7 @@ export default [
         name: 'Knowledge',
         component: () => import('../Knowledge.vue'),
         meta: {
-          name: i18n.t('使用文档')
+          nameKey: '使用文档'
         }
       },
       {
@@ -28,7 +26,7 @@ export default [
         name: 'Flow',
         component: () => import('../Flow.vue'),
         meta: {
-          name: i18n.t('流量明细')
+          nameKey: '流量明细'
         }
       },
       {
@@ -36,7 +34,7 @@ export default [
         name: 'Profile',
         component: () => import('../Profile.vue'),
         meta: {
-          name: i18n.t('个人中心')
+          nameKey: '个人中心'
         }
       },
       {
@@ -44,7 +42,7 @@ export default [
         name: 'Invite',
         component: () => import('../Invite.vue'),
         meta: {
-          name: i18n.t('我的邀请')
+          nameKey: '我的邀请'
         }
       },
       {
@@ -52,7 +50,7 @@ export default [
         name: 'Buysubs',
         component: () => import('../Buysubs.vue'),
         meta: {
-          name: i18n.t('购买订阅')
+          nameKey: '购买订阅'
         }
       },
       {
@@ -60,7 +58,7 @@ export default [
         name: 'BuysubsOrder',
         component: () => import('../BuysubsOrder.vue'),
         meta: {
-          name: i18n.t('订阅详情')
+          nameKey: '订阅详情'
         }
       },
       {
@@ -68,7 +66,7 @@ export default [
         name: 'Mysubs',
         component: () => import('../Mysubs.vue'),
         meta: {
-          name: i18n.t('我的订阅')
+          nameKey: '我的订阅'
         }
       },
       {
@@ -76,7 +74,7 @@ export default [
         name: 'Order',
         component: () => import('../Order.vue'),
         meta: {
-          name: i18n.t('我的订单')
+          nameKey: '我的订单'
         }
       },
       {
@@ -84,7 +82,7 @@ export default [
         name: 'OrderInfo',
         component: () => import('../OrderInfo.vue'),
         meta: {
-          name: i18n.t('订单详情')
+          nameKey: '订单详情'
         }
       },
       {
@@ -92,7 +90,7 @@ export default [
         name: 'Ticket',
         component: () => import('../Ticket.vue'),
         meta: {
-          name: i18n.t('我的工单')
+          nameKey: '我的工单'
         }
       },
       {
@@ -100,7 +98,7 @@ export default [
         name: 'Webview',
         component: () => import('../Webview.vue'),
         meta: {
-          name: i18n.t('查看')
+          nameKey: '查看'
         }
       }
     ]
@@ -110,7 +108,7 @@ export default [
     name: 'PayQrcode',
     component: () => import('../PayQrcode.vue'),
     meta: {
-      name: i18n.t('支付')
+      nameKey: '支付'
     }
   },
   {
@@ -119,7 +117,7 @@ export default [
     name: 'OrderCallback',
     component: () => import('../OrderCallback.vue'),
     meta: {
-      name: i18n.t('支付成功')
+      nameKey: '支付成功'
     }
   }
 ]

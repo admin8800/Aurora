@@ -7,15 +7,6 @@ Vue.use(VueI18n)
 const { zhCN, zhTW, enUS } = window.langs
 const langs = ['zhCN', 'zhTW', 'enUS']
 
-function fillMissingMessages(messages, fallback) {
-  Object.keys(fallback).forEach((key) => {
-    if (messages[key] === undefined || messages[key] === '') {
-      messages[key] = fallback[key]
-    }
-  })
-  return messages
-}
-
 export function applyLangClass(lang) {
   langs.forEach((item) => document.body.classList.remove(item))
   document.body.classList.add(lang)
@@ -42,7 +33,7 @@ export default new VueI18n({
   silentTranslationWarn: true,
   messages: {
     zhCN,
-    zhTW: fillMissingMessages(zhTW, zhCN),
+    zhTW,
     enUS
   }
 })

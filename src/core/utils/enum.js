@@ -1,3 +1,5 @@
+import i18n from '@/i18n'
+
 /**
  * defination: new Enum({
  *    MAN: [1, '男'],
@@ -21,7 +23,7 @@ class Enum {
       const item = this.defination[key]
       return {
         value: item[0],
-        label: item[1]
+        label: i18n.t(item[1])
       }
     })
     return ret

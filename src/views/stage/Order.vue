@@ -8,18 +8,18 @@
               {{ text }}
             </span>
           </a-table-column>
-          <a-table-column key="periodLabel" data-index="periodLabel" :title="$t('周期')" width="120px">
-            <a-tag slot="customRender" slot-scope="text" color="pink">{{ text }}</a-tag>
+          <a-table-column key="period" data-index="period" :title="$t('周期')" width="120px">
+            <a-tag slot="customRender" slot-scope="text" color="pink">{{ getPeriodLabel(text) }}</a-tag>
           </a-table-column>
           <a-table-column key="amountValue" data-index="amountValue" :title="$t('订单金额') + '(' + unit + ')'" width="130px">
             <div slot="customRender" slot-scope="text">
               {{ text | amount }}
             </div>
           </a-table-column>
-          <a-table-column key="statusLabel" data-index="statusLabel" :title="$t('订单状态')" width="100px">
+          <a-table-column key="status" data-index="status" :title="$t('订单状态')" width="100px">
             <div slot="customRender" slot-scope="text, record">
               <a-badge :status="record.statusBadge" />
-              {{ text }}
+              {{ getStatusLabel(text) }}
             </div>
           </a-table-column>
           <a-table-column key="created_at" data-index="created_at" :title="$t('创建时间')" width="170px">
@@ -55,7 +55,7 @@
 
 <script>
 import { getOrderList, cancelOrder } from './apis/order'
-import { planTypes } from './utils/plan'
+import { planTypes, translatePlanType } from './utils/plan'
 import { States } from './enums/order'
 import { mapState } from 'vuex'
 
@@ -88,12 +88,17 @@ export default {
         }
         return {
           ...row,
-          periodLabel: planTypes.find((item) => item.key === row.period)?.label2,
           amountValue: row.total_amount,
-          statusLabel: States.getLabel(row.status),
           statusBadge: getBadge(row.status)
         }
       })
+    },
+    getPeriodLabel(period) {
+      const planType = planTypes.find((item) => item.key === period)
+      return planType ? translatePlanType(planType).label2 : ''
+    },
+    getStatusLabel(status) {
+      return States.getLabel(status)
     },
     onView(record) {
       this.$router.push('/stage/order/info?id=' + record.trade_no)
