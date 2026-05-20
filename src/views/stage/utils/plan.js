@@ -1,14 +1,22 @@
 import i18n from '@/i18n'
 
 export const planTypes = [
-  { key: 'month_price', label: i18n.t('每月'), label2: i18n.t('月付') },
-  { key: 'quarter_price', label: i18n.t('每季度'), label2: i18n.t('季付') },
-  { key: 'half_year_price', label: i18n.t('每半年'), label2: i18n.t('半年付') },
-  { key: 'year_price', label: i18n.t('每年'), label2: i18n.t('年付') },
-  { key: 'two_year_price', label: i18n.t('每两年'), label2: i18n.t('两年付') },
-  { key: 'three_year_price', label: i18n.t('每三年'), label2: i18n.t('三年付') },
-  { key: 'onetime_price', label: i18n.t('一次性'), label2: i18n.t('一次性付') }
+  { key: 'month_price', labelKey: '每月', label2Key: '月付' },
+  { key: 'quarter_price', labelKey: '每季度', label2Key: '季付' },
+  { key: 'half_year_price', labelKey: '每半年', label2Key: '半年付' },
+  { key: 'year_price', labelKey: '每年', label2Key: '年付' },
+  { key: 'two_year_price', labelKey: '每两年', label2Key: '两年付' },
+  { key: 'three_year_price', labelKey: '每三年', label2Key: '三年付' },
+  { key: 'onetime_price', labelKey: '一次性', label2Key: '一次性付' }
 ]
+
+export function translatePlanType(type) {
+  return {
+    ...type,
+    label: i18n.t(type.labelKey),
+    label2: i18n.t(type.label2Key)
+  }
+}
 
 /**
  * 根据套餐数据计算价格显示
@@ -16,7 +24,7 @@ export const planTypes = [
  * @returns
  */
 export function getShowPrice(plan) {
-  const types = planTypes.filter((item) => plan[item.key] !== null)
+  const types = planTypes.filter((item) => plan[item.key] !== null).map(translatePlanType)
 
   let jsonArray = null
   let matchTagText = ''

@@ -197,7 +197,7 @@ export default {
     this.destroyVisibleObserver = onVisible(this.$refs.refAnimation, () => {
       axios.get(STATIC_URL + '/lf20_kjnwk4pv.json').then((res) => {
         this.worldOptions.animationData = res.data
-      })
+      }).catch(() => {})
     })
   },
   beforeDestroy() {

@@ -11,6 +11,7 @@
 
 <script>
 import { Language } from '@/core/utils/ls'
+import { applyLangClass } from '@/i18n'
 
 export default {
   name: 'LangChange',
@@ -32,7 +33,8 @@ export default {
   methods: {
     onLangClick(lang) {
       this.$ls.set(Language, lang.value)
-      window.location.reload()
+      this.$i18n.locale = lang.value
+      applyLangClass(lang.value)
     }
   }
 }

@@ -34,6 +34,26 @@ const router = new Router({
 })
 
 const whiteList = ['/', '/home', '/login', '/register', '/reset-password', '/agreement', '/error']
+let validatingToken = false
+
+function clearTokenIfUnauthorized(error) {
+  const status = error?.response?.status
+  if (status === 401 || status === 403) {
+    ls.remove(Authorization)
+    return true
+  }
+  return false
+}
+
+function validateTokenSilently() {
+  if (store.state.auth.userInfo.uuid || validatingToken) return
+  validatingToken = true
+  store.dispatch('auth/getUserInfo', { silent: true })
+    .catch(clearTokenIfUnauthorized)
+    .finally(() => {
+      validatingToken = false
+    })
+}
 
 router.beforeEach(async (to, from, next) => {
   document.title = [APP_NAME, to.meta?.name ?? ''].reverse().join(' - ')
@@ -44,6 +64,9 @@ router.beforeEach(async (to, from, next) => {
   if (hasToken) {
     if (to.path === '/login') {
       next({ path: '/stage' })
+    } else if (whiteList.includes(to.path)) {
+      validateTokenSilently()
+      next()
     } else {
       const { userInfo } = store.state.auth
       if (userInfo.uuid) {
@@ -55,7 +78,11 @@ router.beforeEach(async (to, from, next) => {
           next({ ...to, replace: true })
         } catch (error) {
           console.error(error)
-          next('/error')
+          if (clearTokenIfUnauthorized(error)) {
+            next('/login')
+          } else {
+            next(false)
+          }
         }
       }
     }

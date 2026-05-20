@@ -5,6 +5,21 @@ import ls, { Language } from '@/core/utils/ls'
 Vue.use(VueI18n)
 
 const { zhCN, zhTW, enUS } = window.langs
+const langs = ['zhCN', 'zhTW', 'enUS']
+
+function fillMissingMessages(messages, fallback) {
+  Object.keys(fallback).forEach((key) => {
+    if (messages[key] === undefined || messages[key] === '') {
+      messages[key] = fallback[key]
+    }
+  })
+  return messages
+}
+
+export function applyLangClass(lang) {
+  langs.forEach((item) => document.body.classList.remove(item))
+  document.body.classList.add(lang)
+}
 
 export function getLang(spliter = '') {
   const getEnvLang = () => {
@@ -18,15 +33,16 @@ export function getLang(spliter = '') {
     }
   }
   const lang = ls.get(Language) || getEnvLang()
-  document.body.classList.add(lang)
+  applyLangClass(lang)
   return lang.substring(0, 2) + spliter + lang.substring(2)
 }
 
 export default new VueI18n({
   locale: getLang(),
+  silentTranslationWarn: true,
   messages: {
     zhCN,
-    zhTW,
+    zhTW: fillMissingMessages(zhTW, zhCN),
     enUS
   }
 })

@@ -53,7 +53,7 @@ export default {
     this.destroyVisibleObserver = onVisible(this.$refs.refAnimation, () => {
       axios.get(STATIC_URL + '/turn-earth.json').then((res) => {
         this.earthOptions.animationData = res.data
-      })
+      }).catch(() => {})
     })
   },
   beforeDestroy() {

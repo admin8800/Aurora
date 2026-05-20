@@ -273,9 +273,6 @@ export default {
       const { expiredDate, expiredResidue, leftFlow, planId, comboType } = this
       this.$emit('change', { expiredDate, expiredResidue, leftFlow, planId, comboType })
     })
-
-    window.onerror = (e) => {
-    }
   },
   methods: {
     getExpiredDate() {

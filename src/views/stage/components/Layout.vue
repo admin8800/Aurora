@@ -69,17 +69,26 @@ export default {
   },
   computed: {
     navTitle() {
-      return this.navMenus
+      return this.groupMenus
         .map((item) => item.groupLinks)
         .flat()
         .find((item) => this.$route.path.includes(item.menuPath))?.menuTitle
+    },
+    localMenus() {
+      return this.navMenus.map((group) => ({
+        groupTitle: group.groupTitleKey ? this.$t(group.groupTitleKey) : '',
+        groupLinks: group.groupLinks.map((link) => ({
+          ...link,
+          menuTitle: this.$t(link.menuTitleKey)
+        }))
+      }))
     },
     extraMenus() {
       try {
         const extraMenus = window.ExposeConfig.extraMenus.map((group) => {
           const groupLinks = group.groupLinks.map((link) => {
             return {
-              menuTitle: this.$t(link.menuTitle),
+              menuTitle: link.menuTitle,
               menuIcon: link.menuIcon || 'fire',
               menuPath: '/stage/webview?token=' + btoa(link.menuPath),
               externalLink: link.menuPath,
@@ -89,7 +98,7 @@ export default {
             }
           })
           return {
-            groupTitle: this.$t(group.groupTitle),
+            groupTitle: group.groupTitle,
             groupLinks
           }
         })
@@ -105,7 +114,7 @@ export default {
           var ExposeConfig = {
             extraMenus: [
               {
-                groupTitle: '自定义标题', // 大标题文本 （如需支持多语言，请在zh-CN.js、zh-TW.js、en-US.js中配置多语言文本）
+                groupTitle: '自定义标题', // 大标题文本
                 groupLinks: [
                   {
                     menuTitle: '小标题1', // 标题文本
@@ -127,7 +136,7 @@ export default {
           }
 
        */
-      return [...this.navMenus, ...this.extraMenus]
+      return [...this.localMenus, ...this.extraMenus]
     },
     isWebview() {
       return this.$route.path.includes('/webview')

@@ -14,20 +14,22 @@ export function getGlobalConfig() {
 /**
  * 获取用户配置
  */
-export function getUserConfig() {
+export function getUserConfig(config = {}) {
   return request({
     url: SERVER_URL + '/api/v1/user/comm/config',
-    method: 'get'
+    method: 'get',
+    ...config
   })
 }
 
 /**
  * 获取用户信息
  */
-export function getUserInfo() {
+export function getUserInfo(config = {}) {
   return request({
     url: SERVER_URL + '/api/v1/user/info',
-    method: 'get'
+    method: 'get',
+    ...config
   })
 }
 

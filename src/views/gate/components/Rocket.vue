@@ -46,7 +46,7 @@ export default {
     this.destroyVisibleObserver = onVisible(this.$refs.refAnimation, () => {
       axios.get(STATIC_URL + '/83245-rocket-launch.json').then((res) => {
         this.rocketOptions.animationData = res.data
-      })
+      }).catch(() => {})
     })
   },
   beforeDestroy() {

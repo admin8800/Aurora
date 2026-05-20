@@ -47,22 +47,26 @@ service.interceptors.response.use(
   },
   (error) => {
     endLoading()
-    try {
-      const res = error.response.data
-      notification.error({
-        message: i18n.t('请求失败'),
-        description: res.message
-      })
+    if (!error.config?.silent) {
+      try {
+        const res = error.response.data
+        notification.error({
+          message: i18n.t('请求失败'),
+          description: res.message
+        })
+      } catch {
+        notification.error({
+          message: i18n.t('请求失败'),
+          description: i18n.t('似乎出了点问题')
+        })
+      }
+    }
 
-      if (error.response.status === 403) {
+    try {
+      if ([401, 403].includes(error.response.status)) {
         ls.remove(Authorization)
       }
-    } catch {
-      notification.error({
-        message: i18n.t('请求失败'),
-        description: i18n.t('似乎出了点问题')
-      })
-    }
+    } catch {}
 
     return Promise.reject(error)
   }

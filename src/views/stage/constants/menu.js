@@ -1,78 +1,76 @@
-import i18n from '@/i18n'
-
 export default [
   {
-    groupTitle: '',
+    groupTitleKey: '',
     groupLinks: [
       {
-        menuTitle: i18n.t('仪表盘'),
+        menuTitleKey: '仪表盘',
         menuIcon: 'gauge',
         menuPath: '/stage/dashboard'
       },
       {
-        menuTitle: i18n.t('使用文档'),
+        menuTitleKey: '使用文档',
         menuIcon: 'book-open-text',
         menuPath: '/stage/knowledge'
       }
     ]
   },
   {
-    groupTitle: i18n.t('订阅'),
+    groupTitleKey: '订阅',
     groupLinks: [
       {
-        menuTitle: i18n.t('购买订阅'),
+        menuTitleKey: '购买订阅',
         menuIcon: 'currency-circle-dollar',
         menuPath: '/stage/buysubs'
       },
       {
-        menuTitle: i18n.t('购买订阅'),
+        menuTitleKey: '购买订阅',
         menuIcon: 'currency-circle-dollar',
         menuPath: '/stage/buysubs/order',
         menuHide: true
       },
       {
-        menuTitle: i18n.t('我的订阅'),
+        menuTitleKey: '我的订阅',
         menuIcon: 'shopping-cart-simple',
         menuPath: '/stage/mysubs'
       }
     ]
   },
   {
-    groupTitle: i18n.t('财务'),
+    groupTitleKey: '财务',
     groupLinks: [
       {
-        menuTitle: i18n.t('我的订单'),
+        menuTitleKey: '我的订单',
         menuIcon: 'cardholder',
         menuPath: '/stage/order'
       },
       {
-        menuTitle: i18n.t('我的订单'),
+        menuTitleKey: '我的订单',
         menuIcon: 'cardholder',
         menuPath: '/stage/order/info',
         menuHide: true
       },
       {
-        menuTitle: i18n.t('我的邀请'),
+        menuTitleKey: '我的邀请',
         menuIcon: 'link-break',
         menuPath: '/stage/invite'
       }
     ]
   },
   {
-    groupTitle: i18n.t('用户'),
+    groupTitleKey: '用户',
     groupLinks: [
       {
-        menuTitle: i18n.t('个人中心'),
+        menuTitleKey: '个人中心',
         menuIcon: 'user-circle',
         menuPath: '/stage/profile'
       },
       {
-        menuTitle: i18n.t('我的工单'),
+        menuTitleKey: '我的工单',
         menuIcon: 'chat-centered-dots',
         menuPath: '/stage/ticket'
       },
       {
-        menuTitle: i18n.t('流量明细'),
+        menuTitleKey: '流量明细',
         menuIcon: 'presentation-chart',
         menuPath: '/stage/flow'
       }

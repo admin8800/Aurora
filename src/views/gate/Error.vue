@@ -32,7 +32,7 @@ export default {
     setTimeout(() => {
       axios.get(STATIC_URL + '/98488-bot-error-404.json').then((res) => {
         this.lottieOptions.animationData = res.data
-      })
+      }).catch(() => {})
     }, 0)
   },
   methods: {

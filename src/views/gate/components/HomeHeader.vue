@@ -68,7 +68,6 @@
 <script>
 import CornerBar from '@/views/stage/components/CornerBar'
 import LangChange from '@/views/stage/components/LangChange'
-import { Authorization } from '@/core/utils/ls'
 
 export default {
   name: 'HomeHeader',
@@ -84,7 +83,7 @@ export default {
   },
   computed: {
     hasLogin() {
-      return this.$ls.get(Authorization)
+      return this.$store.state.auth.userInfo.uuid
     }
   },
   mounted() {

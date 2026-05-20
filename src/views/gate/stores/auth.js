@@ -34,16 +34,16 @@ const actions = {
   /**
    * 获取用户配置
    */
-  async getUserConfig({ commit }) {
-    const res = await getUserConfig()
+  async getUserConfig({ commit }, config) {
+    const res = await getUserConfig(config)
     commit('SET_USER_CONFIG', res.data)
   },
 
   /**
    * 获取用户信息
    */
-  async getUserInfo({ commit }) {
-    const res = await getUserInfo()
+  async getUserInfo({ commit }, config) {
+    const res = await getUserInfo(config)
     commit('SET_USER_INFO', res.data)
   }
 }
